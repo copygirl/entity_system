@@ -1,0 +1,6 @@
+[package]
+name = "entity_system"
+version = "0.1.0"
+authors = [ "copygirl <halfnerd.copygirl@gmail.com>" ]
+repository = "https://github.com/copygirl/entity_system"
+license = "MIT"
