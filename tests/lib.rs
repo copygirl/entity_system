@@ -2,6 +2,7 @@ extern crate entity_system;
 
 use entity_system::*;
 
+
 #[derive(PartialEq, Clone, Copy, Debug)]
 struct Location(f32, f32, f32);
 
@@ -11,9 +12,9 @@ struct Health(i32);
 
 #[test]
 fn test() {
-    let mut ec_map = storage::Map::<Entity>::new();
+    let mut ec_map = storage::Map::<u32>::new();
     
-    let entity   = Entity(0);
+    let entity   = 0;
     let location = Location(1.0, 2.0, 3.0);
     
     ec_map.insert(entity, location);
