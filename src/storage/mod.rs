@@ -86,19 +86,19 @@ impl<E: Entity> Map<E> {
             .expect("downcast to component map")
     }
     
-    pub fn borrow<C: Component>(&self, entity: E) -> Option<&C> {
+    pub fn borrow<C: Component>(&self, entity: &E) -> Option<&C> {
         self.component_map_get()
-            .and_then(|m| m.borrow(&entity))
+            .and_then(|m| m.borrow(entity))
     }
     
-    pub fn borrow_mut<C: Component>(&mut self, entity: E) -> Option<&mut C> {
+    pub fn borrow_mut<C: Component>(&mut self, entity: &E) -> Option<&mut C> {
         self.component_map_get_mut()
-            .and_then(|m| m.borrow_mut(&entity))
+            .and_then(|m| m.borrow_mut(entity))
     }
     
-    pub fn get<C: Component + Clone>(&self, entity: E) -> Option<C> {
+    pub fn get<C: Component + Clone>(&self, entity: &E) -> Option<C> {
         self.component_map_get()
-            .and_then(|m| m.get(&entity))
+            .and_then(|m| m.get(entity))
     }
     
     pub fn insert<C: Component>(&mut self, entity: E, value: C) -> Option<C> {
@@ -106,9 +106,9 @@ impl<E: Entity> Map<E> {
             .insert(entity, value)
     }
     
-    pub fn remove<C: Component>(&mut self, entity: E) -> Option<C> {
+    pub fn remove<C: Component>(&mut self, entity: &E) -> Option<C> {
         self.component_map_get_mut()
-            .and_then(|m| m.remove(&entity))
+            .and_then(|m| m.remove(entity))
     }
     
     pub fn set<C: Component>(&mut self, entity: E, value: Option<C>) -> Option<C> {

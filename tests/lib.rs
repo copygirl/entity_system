@@ -18,10 +18,10 @@ fn test() {
     let location = Location(1.0, 2.0, 3.0);
     
     ec_map.insert(entity, location);
-    assert_eq!(ec_map.borrow::<Location>(entity), Some(&Location(1.0, 2.0, 3.0)));
-    assert_eq!(ec_map.get::<Location>(entity), Some(Location(1.0, 2.0, 3.0)));
-    assert_eq!(ec_map.get::<Health>(entity), None);
+    assert_eq!(ec_map.borrow::<Location>(&entity), Some(&Location(1.0, 2.0, 3.0)));
+    assert_eq!(ec_map.get::<Location>(&entity), Some(Location(1.0, 2.0, 3.0)));
+    assert_eq!(ec_map.get::<Health>(&entity), None);
     
-    ec_map.remove::<Location>(entity);
-    assert_eq!(ec_map.get::<Location>(entity), None);
+    ec_map.remove::<Location>(&entity);
+    assert_eq!(ec_map.get::<Location>(&entity), None);
 }
