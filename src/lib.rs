@@ -24,7 +24,7 @@ pub trait EntityRef {
     fn borrow_mut<C: Component>(&self) -> Result<&mut C, Error>;
     
     fn get<C: Component + Clone>(&self) -> Result<C, Error>
-        { self.borrow().cloned() }
+        { self.borrow().map(Clone::clone) }
     
     fn insert<C: Component>(&self, value: C) -> Result<C, Error>
         { self.set(Option::Some(value)) }
