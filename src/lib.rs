@@ -37,18 +37,11 @@ pub trait EntityRef {
         }
     }
     
-    fn insert<C: Component>(&self, value: C) -> Result<C, Error>
-        { self.set(Option::Some(value)) }
+    fn add<C: Component>(&self, value: C) -> Result<Option<C>, Error>;
     
-    fn remove<C: Component>(&self) -> Result<C, Error>
-        { self.set(Option::None) }
+    fn remove<C: Component>(&self) -> Result<Option<C>, Error>;
     
-    fn set<C: Component>(&self, value: Option<C>) -> Result<C, Error> {
-        match value {
-            Some(value) => self.insert(value),
-            None        => self.remove(),
-        }
-    }
+    fn set<C: Component>(&self, value: Option<C>) -> Result<Option<C>, Error>;
     
     fn iter(&self) -> Iterator<Item=Box<&Any>>;
     
