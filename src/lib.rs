@@ -12,6 +12,7 @@
 //! - [Wikipedia: Entity component system](https://en.wikipedia.org/wiki/Entity_component_system)
 
 use std::any::Any;
+use std::fmt::Debug;
 use std::hash::Hash;
 
 pub mod storage;
@@ -40,7 +41,7 @@ impl<T: Any + Eq + Hash + Debug + Default + Into<u32>> Entity for T
 /// various available data structures.
 /// 
 /// Automatically implemented for most types.
-pub trait Component: Any, Debug { }
+pub trait Component: Any + Debug { }
 impl<T: Any + Debug> Component for T { }
 
 /// Error type for entity system operations.
