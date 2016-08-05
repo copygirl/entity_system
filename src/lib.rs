@@ -29,6 +29,14 @@ pub trait EntityRef {
     fn get<C: Component + Clone>(&self) -> Result<C, Error>
         { self.borrow().map(Clone::clone) }
     
+    fn has<C: Component>(&self) -> Result<bool, Error> {
+        match self.borrow::<C>() {
+            Ok(_) => Result::Ok(true),
+            Err(Error::ComponentMissing) => Result::Ok(false),
+            Err(err) => Result::Err(err),
+        }
+    }
+    
     fn insert<C: Component>(&self, value: C) -> Result<C, Error>
         { self.set(Option::Some(value)) }
     
