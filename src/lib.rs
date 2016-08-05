@@ -4,8 +4,11 @@ use std::hash::Hash;
 pub mod storage;
 
 
-pub trait Entity: Any + Eq + Hash + Default { }
-impl<T: Any + Eq + Hash + Default> Entity for T { }
+pub trait Entity: Any + Eq + Hash + Default {
+    fn index(self) -> u32;
+}
+impl<T: Any + Eq + Hash + Default + Into<u32>> Entity for T
+    { fn index(self) -> u32 { self.into() } }
 
 pub trait Component: Any { }
 impl<T: Any> Component for T { }
