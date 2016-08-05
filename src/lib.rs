@@ -4,14 +4,14 @@ use std::hash::Hash;
 pub mod storage;
 
 
-pub trait Entity: Any + Eq + Hash + Default {
+pub trait Entity: Any + Eq + Hash + Debug + Default {
     fn index(self) -> u32;
 }
-impl<T: Any + Eq + Hash + Default + Into<u32>> Entity for T
+impl<T: Any + Eq + Hash + Debug + Default + Into<u32>> Entity for T
     { fn index(self) -> u32 { self.into() } }
 
-pub trait Component: Any { }
-impl<T: Any> Component for T { }
+pub trait Component: Any, Debug { }
+impl<T: Any + Debug> Component for T { }
 
 pub enum Error {
     EntityMissing,
