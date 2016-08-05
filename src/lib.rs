@@ -44,6 +44,4 @@ pub trait EntityRef {
     
     fn iter(&self) -> Iterator<Item=Box<&Any>>;
     
-    fn iter_mut(&self) -> Iterator<Item=Box<&mut Any>>;
-    
 }
